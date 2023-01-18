@@ -19,7 +19,7 @@ namespace OnlineMuhasebeServer.Persistance.Context
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var entries = ChangeTracker.Entries<Entity>();
+            var entries = ChangeTracker.Entries<OnlineMuhasebeServer.Domain.Abstractions.Entity>();
 
             foreach (var entry in entries)
             {
