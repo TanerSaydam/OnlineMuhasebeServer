@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnlineMuhasebeServer.Infrasturcture\OnlineMuhasebeServer.Infrasturcture.csproj" />
     <ProjectReference Include="..\OnlineMuhasebeServer.Persistance\OnlineMuhasebeServer.Persistance.csproj" />
     <ProjectReference Include="..\OnlineMuhasebeServer.Presentation\OnlineMuhasebeServer.Presentation.csproj" />
   </ItemGroup>
