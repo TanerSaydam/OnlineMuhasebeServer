@@ -12,9 +12,9 @@ namespace OnlineMuhasebeServer.Persistance.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<CreateCompanyRequest, Company>();
-            CreateMap<CreateUCAFRequest, UniformChartOfAccount>();
-            CreateMap<CreateRoleRequest, AppRole>();
+            CreateMap<CreateCompanyCommand, Company>();
+            CreateMap<CreateUCAFCommand, UniformChartOfAccount>();
+            CreateMap<CreateRoleCommand, AppRole>();
         }
     }
 }

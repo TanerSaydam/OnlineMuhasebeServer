@@ -4,6 +4,6 @@ namespace OnlineMuhasebeServer.Application.Services.CompanyServices
 {
     public interface IUCAFService
     {
-        Task CreateUcafAsync(CreateUCAFRequest request);
+        Task CreateUcafAsync(CreateUCAFCommand request);
     }
 }

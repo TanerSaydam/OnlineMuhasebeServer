@@ -2,22 +2,23 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Abstractions;
+using OnlineMuhasebeServer.Application.Messaging;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login
 {
-    public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
+    public class LoginCommandHandler : ICommandHandler<LoginCommand,LoginCommandResponse>
     {
         private readonly IJwtProvider _jwtProvider;
         private readonly UserManager<AppUser> _userManager;
 
-        public LoginHandler(IJwtProvider jwtProvider, UserManager<AppUser> userManager)
+        public LoginCommandHandler(IJwtProvider jwtProvider, UserManager<AppUser> userManager)
         {
             _jwtProvider = jwtProvider;
             _userManager = userManager;
         }
 
-        public async Task<LoginResponse> Handle(LoginRequest request, CancellationToken cancellationToken)
+        public async Task<LoginCommandResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             AppUser user = await _userManager.Users.Where(p => p.Email == request.EmailOrUserName || p.UserName == request.EmailOrUserName).FirstOrDefaultAsync();
             
@@ -28,13 +29,11 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.
 
             List<string> roles = new();
 
-            LoginResponse response = new()
-            {
-                Email = user.Email,
-                NameLastName = user.NameLastName,
-                UserId = user.Id,
-                Token = await _jwtProvider.CreateTokenAsync(user, roles)
-            };
+            LoginCommandResponse response = new(
+                user.Email,
+                user.NameLastName,
+                user.Id,
+                await _jwtProvider.CreateTokenAsync(user, roles));
 
             return response;
         }
