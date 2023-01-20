@@ -3,41 +3,43 @@ using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany;
 using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.CompanyRepositories;
+using OnlineMuhasebeServer.Domain.UnitOfWorks;
 using OnlineMuhasebeServer.Persistance.Context;
+using System.Runtime.CompilerServices;
 
 namespace OnlineMuhasebeServer.Persistance.Services.AppServices
 {
     public sealed class CompanyService : ICompanyService
     {
-        private static readonly Func<AppDbContext, string, Task<Company?>> GetCompanyByNameCompiled =
-            EF.CompileAsyncQuery((AppDbContext context, string name) =>
-             context.Set<Company>().FirstOrDefault(p => p.Name == name)
-        );
-
-        private readonly AppDbContext _context;
+        private readonly ICompanyCommandRepository _companyCommandRepository;
+        private readonly ICompanyQueryRepository _companyQueryRepository;
+        private readonly IAppUnitOfWork _appUnitOfWork;
         private readonly IMapper _mapper;
-        public CompanyService(AppDbContext context, IMapper mapper)
+        public CompanyService(IMapper mapper, ICompanyCommandRepository companyCommandRepository, ICompanyQueryRepository companyQueryRepository, IAppUnitOfWork appUnitOfWork)
         {
-            _context = context;
             _mapper = mapper;
+            _companyCommandRepository = companyCommandRepository;
+            _companyQueryRepository = companyQueryRepository;
+            _appUnitOfWork = appUnitOfWork;
         }
 
         public async Task CreateCompany(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
             Company company = _mapper.Map<Company>(request);
             company.Id = Guid.NewGuid().ToString();
-            await _context.Set<Company>().AddAsync(company, cancellationToken);
-            await _context.SaveChangesAsync(cancellationToken);
+            await _companyCommandRepository.AddAsync(company, cancellationToken);
+            await _appUnitOfWork.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<Company?> GetCompanyByName(string name)
         {
-            return await GetCompanyByNameCompiled(_context,name);
+            return await _companyQueryRepository.GetFirstByExpiression(p => p.Name == name); 
         }
 
         public async Task MigrateCompanyDatabases()
         {
-            var companies = await _context.Set<Company>().ToListAsync();
+            var companies = await _companyQueryRepository.GetAll().ToListAsync();
             foreach (var company in companies)
             {
                 var db = new CompanyDbContext(company);
