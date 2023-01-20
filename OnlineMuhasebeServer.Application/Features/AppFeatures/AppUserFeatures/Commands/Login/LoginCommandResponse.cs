@@ -1,4 +1,4 @@
-﻿namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login
+﻿namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Commands.Login
 {
     public sealed record LoginCommandResponse(
         string Token,

@@ -32,7 +32,7 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         [HttpPost("[action]")]
         public async Task<IActionResult> UpdateRole(UpdateRoleCommand request)
         {
-            UpdateRoleCommandReponse response = await _mediator.Send(request);
+            UpdateRoleCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 

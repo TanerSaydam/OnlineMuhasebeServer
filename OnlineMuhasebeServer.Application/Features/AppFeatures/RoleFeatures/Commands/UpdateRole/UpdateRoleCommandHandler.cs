@@ -4,7 +4,7 @@ using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole
 {
-    public sealed class UpdateRoleCommandHandler : ICommandHandler<UpdateRoleCommand, UpdateRoleCommandReponse>
+    public sealed class UpdateRoleCommandHandler : ICommandHandler<UpdateRoleCommand, UpdateRoleCommandResponse>
     {
         private readonly IRoleService _roleService;
 
@@ -13,7 +13,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Com
             _roleService = roleService;
         }
 
-        public async Task<UpdateRoleCommandReponse> Handle(UpdateRoleCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateRoleCommandResponse> Handle(UpdateRoleCommand request, CancellationToken cancellationToken)
         {
             AppRole role = await _roleService.GetById(request.Id);
             if (role == null) throw new Exception("Role bulunamadı!");

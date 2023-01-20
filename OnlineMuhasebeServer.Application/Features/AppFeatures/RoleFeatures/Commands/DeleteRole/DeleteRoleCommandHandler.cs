@@ -18,6 +18,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Com
         {
             AppRole role = await _roleService.GetById(request.Id);
             if (role == null) throw new Exception("Role bulunamadı!");
+
             await _roleService.DeleteAsync(role);
 
             return new();

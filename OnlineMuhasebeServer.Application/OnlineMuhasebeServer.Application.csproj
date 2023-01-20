@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\AppFeatures\AppUserFeatures\Queries\" />
     <Folder Include="Features\AppFeatures\CompanyFeatures\Queries\" />
     <Folder Include="Features\CompanyFeatures\UCAFFeatures\Queries\" />
   </ItemGroup>

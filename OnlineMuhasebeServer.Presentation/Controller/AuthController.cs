@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login;
+using OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Commands.Login;
 using OnlineMuhasebeServer.Presentation.Abstraction;
 
 namespace OnlineMuhasebeServer.Presentation.Controller

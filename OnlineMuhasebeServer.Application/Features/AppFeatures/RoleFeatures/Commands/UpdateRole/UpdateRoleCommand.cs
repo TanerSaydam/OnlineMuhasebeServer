@@ -5,5 +5,5 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Com
     public sealed record UpdateRoleCommand(
         string Id,
         string Code,
-        string Name) : ICommand<UpdateRoleCommandReponse>;
+        string Name) : ICommand<UpdateRoleCommandResponse>;
 }

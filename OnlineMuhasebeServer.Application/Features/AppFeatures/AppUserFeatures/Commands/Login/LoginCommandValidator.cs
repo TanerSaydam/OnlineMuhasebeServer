@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
 
-namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login
+namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Commands.Login
 {
     public sealed class LoginCommandValidator : AbstractValidator<LoginCommand>
     {
         public LoginCommandValidator()
         {
-            RuleFor(p=> p.EmailOrUserName).NotNull().WithMessage("Mail ya da kullanıcı adı yazmalısınız!");
-            RuleFor(p=> p.EmailOrUserName).NotEmpty().WithMessage("Mail ya da kullanıcı adı yazmalısınız!");
+            RuleFor(p => p.EmailOrUserName).NotNull().WithMessage("Mail ya da kullanıcı adı yazmalısınız!");
+            RuleFor(p => p.EmailOrUserName).NotEmpty().WithMessage("Mail ya da kullanıcı adı yazmalısınız!");
             RuleFor(p => p.Password).NotNull().WithMessage("Şifre boş olamaz");
             RuleFor(p => p.Password).NotEmpty().WithMessage("Şifre boş olamaz");
             RuleFor(p => p.Password).MinimumLength(6).WithMessage("Şifre en az 6 karakter olmalıdır");
