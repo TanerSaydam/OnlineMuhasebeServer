@@ -13,9 +13,9 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateCompany(CreateCompanyCommand request)
+        public async Task<IActionResult> CreateCompany(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
-            CreateCompanyCommandResponse response = await _mediator.Send(request);
+            CreateCompanyCommandResponse response = await _mediator.Send(request, cancellationToken);
             return Ok(response);
         }
 
@@ -25,8 +25,6 @@ namespace OnlineMuhasebeServer.Presentation.Controller
             MigrateCompanyDatabasesCommand request = new();
             MigrateCompanyDatabasesCommandResponse response = await _mediator.Send(request);
             return Ok(response);
-
         }
-
     }
 }

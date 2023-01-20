@@ -19,7 +19,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.
             Company company = await _companyService.GetCompanyByName(request.Name);
             if (company != null) throw new Exception("Bu şirket adı daha önce kullanılmış!");
 
-            await _companyService.CreateCompany(request);
+            await _companyService.CreateCompany(request, cancellationToken);
             return new();
         }
     }
