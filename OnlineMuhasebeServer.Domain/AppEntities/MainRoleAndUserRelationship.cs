@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineMuhasebeServer.Domain.AppEntities;
 
-public sealed class MadinRoleAndUserRelationship : Entity
+public sealed class MainRoleAndUserRelationship : Entity
 {
     [ForeignKey("AppUser")]
     public string UserId { get; set; }

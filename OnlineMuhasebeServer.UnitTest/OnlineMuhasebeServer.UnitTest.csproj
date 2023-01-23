@@ -24,12 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\AppFeatures\AppUserFeatures\Queries\" />
-    <Folder Include="Features\AppFeatures\CompanyFeatures\Queries\" />
-    <Folder Include="Features\CompanyFeatures\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OnlineMuhasebeServer.Application\OnlineMuhasebeServer.Application.csproj" />
     <ProjectReference Include="..\OnlineMuhasebeServer.Domain\OnlineMuhasebeServer.Domain.csproj" />
   </ItemGroup>

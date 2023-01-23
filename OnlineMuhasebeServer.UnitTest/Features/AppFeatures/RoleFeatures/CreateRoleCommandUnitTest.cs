@@ -4,7 +4,7 @@ using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using Shouldly;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Commands;
+namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures;
 
 public sealed class CreateRoleCommandUnitTest
 {
