@@ -42,9 +42,10 @@ public class PersistanceDIServiceInstaller : IServiceInstaller
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IMainRoleService, MainRoleService>();                
-                services.AddScoped<IMainRoleAndRoleRelationshipService, MainRoleAndRoleRelationshipService>();
-                services.AddScoped<IMainRoleAndUserRelationshipService, MainRoleAndUserRelationshipService>();
-                services.AddScoped<IUserAndCompanyRelationshipService, UserAndCompanyRelationshipService>();
+            services.AddScoped<IMainRoleAndRoleRelationshipService, MainRoleAndRoleRelationshipService>();
+            services.AddScoped<IMainRoleAndUserRelationshipService, MainRoleAndUserRelationshipService>();
+            services.AddScoped<IUserAndCompanyRelationshipService, UserAndCompanyRelationshipService>();
+            services.AddScoped<IAuthService, AuthService>();
             //AppServiceDISpot
             #endregion
         #endregion

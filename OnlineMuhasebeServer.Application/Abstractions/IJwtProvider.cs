@@ -1,9 +1,10 @@
 ﻿using OnlineMuhasebeServer.Domain.AppEntities.Identity;
+using OnlineMuhasebeServer.Domain.Dtos;
 
 namespace OnlineMuhasebeServer.Application.Abstractions
 {
     public interface IJwtProvider
     {
-        Task<string> CreateTokenAsync(AppUser user, List<string> roles);
+        Task<TokenRefreshTokenDto> CreateTokenAsync(AppUser user);
     }
 }

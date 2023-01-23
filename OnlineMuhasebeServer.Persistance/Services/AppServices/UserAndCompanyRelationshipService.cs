@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.UserAndCompanyRelationshipRepositories;
@@ -31,7 +32,12 @@ public class UserAndCompanyRelationshipService : IUserAndCompanyRelationshipServ
 
     public async Task<UserAndCompanyRelationship> GetByUserIdAndCompanyId(string userId, string companyId, CancellationToken cancellationToken)
     {
-        return await _queryRepository.GetFirstByExpiression(p=> p.AppUserId == userId && companyId == companyId, cancellationToken);
+        return await _queryRepository.GetFirstByExpiression(p=> p.AppUserId == userId && p.CompanyId == companyId, cancellationToken);
+    }
+
+    public async Task<IList<UserAndCompanyRelationship>> GetListByUserId(string userId)
+    {
+        return await _queryRepository.GetWhere(p=> p.AppUserId ==userId).Include("Company").ToListAsync();   
     }
 
     public async Task RemoveByIdAsync(string id)

@@ -36,6 +36,11 @@ public class MainRoleAndUserRelationshipService : IMainRoleAndUserRelationshipSe
         return await _queryRepository.GetFirstByExpiression(p => p.UserId == userId && p.CompanyId == companyId && p.MainRoleId == mainRoleId, cancellationToken);
     }
 
+    public async Task<MainRoleAndUserRelationship> GetRolesByUserIdAndCompanyId(string userId, string companyId)
+    {
+        return await _queryRepository.GetFirstByExpiression(p => p.UserId == userId && p.CompanyId == companyId, default);
+    }
+
     public async Task RemoveByIdAsync(string id)
     {
         await _commandRepository.RemoveById(id);

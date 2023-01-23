@@ -1,6 +1,6 @@
 ﻿using OnlineMuhasebeServer.Application.Messaging;
 
-namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Commands.Login
+namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AuthFeatures.Commands.Login
 {
     public sealed record LoginCommand(
         string EmailOrUserName,
