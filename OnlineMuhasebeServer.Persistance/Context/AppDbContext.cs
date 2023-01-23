@@ -19,6 +19,7 @@ namespace OnlineMuhasebeServer.Persistance.Context
         public DbSet<MainRole> MainRoles { get; set; }
         public DbSet<MainRoleAndRoleRelationship> MainRoleAndRoleRelationships { get; set; }
         public DbSet<UserAndCompanyRelationship> UserAndCompanyRelationships { get; set; }
+        public DbSet<MainRoleAndUserRelationship> MainRoleAndUserRelationships { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
