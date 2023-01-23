@@ -1,4 +1,4 @@
-﻿using OnlineMuhasebeServer.Application.Services.AppServices;
+using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Application.Services.CompanyServices;
 using OnlineMuhasebeServer.Domain;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.CompanyRepositories;
@@ -12,6 +12,7 @@ using OnlineMuhasebeServer.Persistance.Repositories.CompanyDbContext.UCAFReposit
 using OnlineMuhasebeServer.Persistance.Services.AppServices;
 using OnlineMuhasebeServer.Persistance.Services.CompanyServices;
 using OnlineMuhasebeServer.Persistance.UnitOfWorks;
+//UsingSpot
 
 namespace OnlineMuhasebeServer.WebApi.Configurations;
 
@@ -28,12 +29,14 @@ public class PersistanceDIServiceInstaller : IServiceInstaller
         #region Services
             #region CompanyDbContext
             services.AddScoped<IUCAFService, UCAFService>();
+            //CompanyServiceDISpot
             #endregion
 
             #region AppDbContext
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IMainRoleService, MainRoleService>();
+            services.AddScoped<IMainRoleService, MainRoleService>();                
+            //AppServiceDISpot
             #endregion
         #endregion
 
@@ -41,6 +44,7 @@ public class PersistanceDIServiceInstaller : IServiceInstaller
             #region CompanyDbContext
             services.AddScoped<IUCAFCommandRepository, UCAFCommandRepository>();
             services.AddScoped<IUCAFQueryRepository, UCAFQueryRepository>();
+            //CompanyRepositoryDISpot
             #endregion
 
 
@@ -48,7 +52,8 @@ public class PersistanceDIServiceInstaller : IServiceInstaller
             services.AddScoped<ICompanyCommandRepository, CompanyCommandRepository>();
             services.AddScoped<ICompanyQueryRepository, CompanyQueryRepository>();
             services.AddScoped<IMainRoleCommandRepository, MainRoleCommandRepository>();
-            services.AddScoped<IMainRoleQueryRepository, MainRoleQueryRepository>();
+            services.AddScoped<IMainRoleQueryRepository, MainRoleQueryRepository>();            
+            //AppRepositoryDISpot
             #endregion
         #endregion
     }
