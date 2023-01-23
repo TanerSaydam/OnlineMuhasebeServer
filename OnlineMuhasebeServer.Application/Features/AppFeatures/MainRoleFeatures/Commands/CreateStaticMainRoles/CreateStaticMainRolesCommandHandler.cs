@@ -21,7 +21,7 @@ public sealed class CreateStaticMainRolesCommandHandler : ICommandHandler<Create
         foreach (var mainRole in mainRoles)
         {
             MainRole checkMainRole = await _mainRoleService.GetByTitleAndCompanyId(mainRole.Title, mainRole.CompanyId, cancellationToken);
-            if (checkMainRole != null) newMainRoles.Add(mainRole);
+            if (checkMainRole == null) newMainRoles.Add(mainRole);
         }
 
         await _mainRoleService.CreateRangeAsync(newMainRoles, cancellationToken);

@@ -5,10 +5,14 @@ namespace OnlineMuhasebeServer.Domain.AppEntities;
 
 public sealed class MainRole : Entity
 {
-    public MainRole(string id, string title, bool ısRoleCreatedByAdmin = false, string companyId = null) : base(id)
+    public MainRole()
+    {
+
+    }
+    public MainRole(string id, string title, bool isRoleCreatedByAdmin = false, string companyId = null) : base(id)
     {
         Title = title;
-        IsRoleCreatedByAdmin = ısRoleCreatedByAdmin;
+        IsRoleCreatedByAdmin = isRoleCreatedByAdmin;
         CompanyId = companyId;        
     }
 

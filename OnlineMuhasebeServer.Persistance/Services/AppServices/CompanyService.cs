@@ -32,6 +32,11 @@ namespace OnlineMuhasebeServer.Persistance.Services.AppServices
             await _appUnitOfWork.SaveChangesAsync(cancellationToken);
         }
 
+        public IQueryable<Company> GetAll()
+        {
+            return _companyQueryRepository.GetAll();
+        }
+
         public async Task<Company?> GetCompanyByName(string name, CancellationToken cancellationToken)
         {
             return await _companyQueryRepository.GetFirstByExpiression(p => p.Name == name, cancellationToken, false); 

@@ -9,9 +9,9 @@ public sealed class MainRoleService : IMainRoleService
 {
     private readonly IMainRoleCommandRepository _mainRoleCommandRepository;
     private readonly IMainRoleQueryRepository _mainRoleQueryRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IAppUnitOfWork _unitOfWork;
 
-    public MainRoleService(IMainRoleCommandRepository mainRoleCommandRepository, IMainRoleQueryRepository mainRoleQueryRepository, IUnitOfWork unitOfWork)
+    public MainRoleService(IMainRoleCommandRepository mainRoleCommandRepository, IMainRoleQueryRepository mainRoleQueryRepository, IAppUnitOfWork unitOfWork)
     {
         _mainRoleCommandRepository = mainRoleCommandRepository;
         _mainRoleQueryRepository = mainRoleQueryRepository;
@@ -35,9 +35,27 @@ public sealed class MainRoleService : IMainRoleService
         return _mainRoleQueryRepository.GetAll();
     }
 
+    public async Task<MainRole> GetByIdAsync(string id)
+    {
+        return await _mainRoleQueryRepository.GetById(id);
+    }
+
     public async Task<MainRole> GetByTitleAndCompanyId(string title, string companyId, CancellationToken cancellationToken)
     {
-        //if(companyId == null) return await _mainRoleQueryRepository.GetFirstByExpiression(p=> p.Title == title);
+        //if(companyId == null) return await _mainRoleQueryRepository.GetFirstByExpiression(p=> p.Title == title,cancellationToken, false);
+
         return await _mainRoleQueryRepository.GetFirstByExpiression(p=> p.Title == title && p.CompanyId == companyId, cancellationToken,false);
+    }
+
+    public async Task RemoveByIdAsync(string id)
+    {
+        await _mainRoleCommandRepository.RemoveById(id);
+        await _unitOfWork.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(MainRole mainRole)
+    {
+        _mainRoleCommandRepository.Update(mainRole);
+        await _unitOfWork.SaveChangesAsync();
     }
 }

@@ -10,15 +10,11 @@ public class AppQueryRepository<T> : IAppQueryRepository<T>
 {
     private static readonly Func<Context.AppDbContext, string, bool, Task<T>> GetByIdCompiled =
             EF.CompileAsyncQuery((Context.AppDbContext context, string id, bool isTracking) =>
-                isTracking == true
-                ? context.Set<T>().FirstOrDefault(p => p.Id == id)
-                : context.Set<T>().AsNoTracking().FirstOrDefault(p => p.Id == id));
+                context.Set<T>().FirstOrDefault(p => p.Id == id));               
 
     private static readonly Func<Context.AppDbContext, bool, Task<T>> GetFirstCompiled =
        EF.CompileAsyncQuery((Context.AppDbContext context, bool isTracking) =>
-            isTracking == true
-            ? context.Set<T>().FirstOrDefault()
-            : context.Set<T>().AsNoTracking().FirstOrDefault());    
+            context.Set<T>().FirstOrDefault());    
 
     private Context.AppDbContext _context;
 
