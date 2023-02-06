@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateMainUCAF;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF;
+using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.RemoveByIdUCAF;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Queries.GetAllUCAF;
 using OnlineMuhasebeServer.Presentation.Abstraction;
 
@@ -31,6 +32,13 @@ public sealed class UCAFsController : ApiController
     public async Task<IActionResult> GetAllUCAF(GetAllUCAFQuery request, CancellationToken cancellationToken)
     {
         GetAllUCAFQueryResponse response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+
+    [HttpPost("[action]")]
+    public async Task<IActionResult> RemoveByIdUCAF(RemoveByIdUCAFCommand request, CancellationToken cancellationToken)
+    {
+        RemoveByIdUCAFCommandResponse response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
 }
