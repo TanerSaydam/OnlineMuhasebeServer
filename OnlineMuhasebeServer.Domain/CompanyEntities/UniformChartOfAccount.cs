@@ -1,4 +1,5 @@
 ﻿using OnlineMuhasebeServer.Domain.Abstractions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineMuhasebeServer.Domain.CompanyEntities
 {
@@ -6,6 +7,6 @@ namespace OnlineMuhasebeServer.Domain.CompanyEntities
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public char Type { get; set; }         
+        public char Type { get; set; }        
     }
 }

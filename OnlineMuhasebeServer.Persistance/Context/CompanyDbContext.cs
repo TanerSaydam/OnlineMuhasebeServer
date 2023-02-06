@@ -12,7 +12,7 @@ namespace OnlineMuhasebeServer.Persistance.Context
         {   
             if(company != null) 
             {
-                if (company.ServerUserId == "")
+                if (String.IsNullOrEmpty(company.ServerUserId))
                     ConnectionString = $"" +
                         $"Data Source={company.ServerName};" +
                         $"Initial Catalog={company.DatabaseName};" +

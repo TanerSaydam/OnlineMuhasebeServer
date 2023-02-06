@@ -33,7 +33,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AuthFeatures.Com
 
             IList<UserAndCompanyRelationship> companies = await _authService.GetCompanyListByUserIdAsync(user.Id);
             IList<CompanyDto> companiesDto = companies.Select(s => new CompanyDto(
-                s.Id, s.Company.Name)).ToList();
+                s.Company.Id, s.Company.Name)).ToList();
 
             if (companies.Count() == 0) throw new Exception("Herhangi bir şikete kayıtlı değilsiniz!");
 

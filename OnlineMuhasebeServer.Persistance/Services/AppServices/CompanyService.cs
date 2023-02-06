@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany;
 using OnlineMuhasebeServer.Application.Services.AppServices;
+using OnlineMuhasebeServer.Application.Services.CompanyServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.CompanyRepositories;
 using OnlineMuhasebeServer.Domain.UnitOfWorks;
@@ -15,13 +16,13 @@ namespace OnlineMuhasebeServer.Persistance.Services.AppServices
         private readonly ICompanyCommandRepository _companyCommandRepository;
         private readonly ICompanyQueryRepository _companyQueryRepository;
         private readonly IAppUnitOfWork _appUnitOfWork;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper;        
         public CompanyService(IMapper mapper, ICompanyCommandRepository companyCommandRepository, ICompanyQueryRepository companyQueryRepository, IAppUnitOfWork appUnitOfWork)
         {
             _mapper = mapper;
             _companyCommandRepository = companyCommandRepository;
             _companyQueryRepository = companyQueryRepository;
-            _appUnitOfWork = appUnitOfWork;
+            _appUnitOfWork = appUnitOfWork;            
         }
 
         public async Task CreateCompany(CreateCompanyCommand request, CancellationToken cancellationToken)
