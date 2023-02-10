@@ -1,11 +1,13 @@
 ﻿using FluentValidation;
 
-namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF;
+namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.UpdateUCAF;
 
-public sealed class CreateUCAFCommandValidator : AbstractValidator<CreateUCAFCommand>
+public sealed class UpdateUCAFCommandValidator : AbstractValidator<UpdateUCAFCommand>
 {
-    public CreateUCAFCommandValidator()
-    {
+	public UpdateUCAFCommandValidator()
+	{
+        RuleFor(p => p.Id).NotEmpty().WithMessage("Hesap planı id boş olamaz!");
+        RuleFor(p => p.Id).NotNull().WithMessage("Hesap planı id boş olamaz!");
         RuleFor(p => p.Code).NotEmpty().WithMessage("Hesap planı kodu boş olamaz!");
         RuleFor(p => p.Code).NotNull().WithMessage("Hesap planı kodu boş olamaz!");
         RuleFor(p => p.Code).MinimumLength(5).WithMessage("Hesap planı kodu en az 5 karakter olmalıdır!");
