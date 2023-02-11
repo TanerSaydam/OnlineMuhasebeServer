@@ -1,5 +1,6 @@
 ﻿using Moq;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.UpdateUCAF;
+using OnlineMuhasebeServer.Application.Services;
 using OnlineMuhasebeServer.Application.Services.CompanyServices;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
 using Shouldly;
@@ -13,17 +14,21 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFeatures
 {
     public sealed class UpdateUCAFCommandUnitTest
     {
-        private readonly Mock<IUCAFService> _service;
+        private readonly Mock<IUCAFService> _ucafService;
+        private readonly Mock<IApiService> _apiService;
+        private readonly Mock<ILogService> _logService;
 
         public UpdateUCAFCommandUnitTest()
         {
-            _service = new();
+            _ucafService = new();
+            _apiService = new();
+            _logService = new();
         }
 
         [Fact]
         public async Task UniformChartOfAccountShouldNotBeNull()
         {
-            _service.Setup(s =>
+            _ucafService.Setup(s =>
             s.GetByIdAsync(
                 It.IsAny<string>(),
                 It.IsAny<string>()))
@@ -35,7 +40,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFeatures
         {
             string companyId = "585985c0-4576-4d62-ae67-59a6f72ae906";
             string code = "100.01.001";
-            UniformChartOfAccount ucaf = await _service.Object.GetByCodeAsync(companyId, code, default);
+            UniformChartOfAccount ucaf = await _ucafService.Object.GetByCodeAsync(companyId, code, default);
             ucaf.ShouldBeNull();
         }
 
@@ -51,7 +56,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFeatures
 
             await UniformChartOfAccountShouldNotBeNull();
 
-            UpdateUCAFCommandHandler handler = new UpdateUCAFCommandHandler(_service.Object);
+            UpdateUCAFCommandHandler handler = new UpdateUCAFCommandHandler(_ucafService.Object, _logService.Object, _apiService.Object);
 
             UpdateUCAFCommandResponse response = await handler.Handle(command, default);
 
