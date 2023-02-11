@@ -3,7 +3,7 @@ using OnlineMuhasebeServer.Application.Services.CompanyServices;
 
 namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Queries.GetAllUCAF;
 
-public sealed class GetAllUCAFQueryHandler : IQueryHander<GetAllUCAFQuery, GetAllUCAFQueryResponse>
+public sealed class GetAllUCAFQueryHandler : IQueryHandler<GetAllUCAFQuery, GetAllUCAFQueryResponse>
 {
     private readonly IUCAFService _ucafService;
 

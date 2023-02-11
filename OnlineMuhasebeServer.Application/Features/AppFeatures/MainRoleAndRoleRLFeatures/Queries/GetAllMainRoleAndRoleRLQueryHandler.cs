@@ -4,7 +4,7 @@ using OnlineMuhasebeServer.Application.Services.AppServices;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleAndRoleRLFeatures.Queries;
 
-public sealed class GetAllMainRoleAndRoleRLQueryHandler : IQueryHander<GetAllMainRoleAndRoleRLQuery, GetAllMainRoleAndRoleRLQueryResponse>
+public sealed class GetAllMainRoleAndRoleRLQueryHandler : IQueryHandler<GetAllMainRoleAndRoleRLQuery, GetAllMainRoleAndRoleRLQueryResponse>
 {
     private readonly IMainRoleAndRoleRelationshipService _roleRelationshipService;
 

@@ -4,7 +4,7 @@ using OnlineMuhasebeServer.Application.Services.AppServices;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Queries.GetAllCompany;
 
-public sealed class GetAllCompanyQueryHandler : IQueryHander<GetAllCompanyQuery, GetAllCompanyQueryResponse>
+public sealed class GetAllCompanyQueryHandler : IQueryHandler<GetAllCompanyQuery, GetAllCompanyQueryResponse>
 {
     private readonly ICompanyService _companyService;
 

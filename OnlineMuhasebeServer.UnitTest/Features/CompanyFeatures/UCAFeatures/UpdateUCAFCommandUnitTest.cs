@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
+namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFeatures
 {
     public sealed class UpdateUCAFCommandUnitTest
     {
@@ -23,7 +23,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
         [Fact]
         public async Task UniformChartOfAccountShouldNotBeNull()
         {
-            _service.Setup(s=>
+            _service.Setup(s =>
             s.GetByIdAsync(
                 It.IsAny<string>(),
                 It.IsAny<string>()))

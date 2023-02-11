@@ -3,7 +3,7 @@ using OnlineMuhasebeServer.Application.Services.AppServices;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AuthFeatures.Queries.GetRolesByUserIdAndCompanyId;
 
-public sealed class GetRolesByUserIdAndCompanyIdQueryHandler : IQueryHander<GetRolesByUserIdAndCompanyIdQuery, GetRolesByUserIdAndCompanyIdQueryResponse>
+public sealed class GetRolesByUserIdAndCompanyIdQueryHandler : IQueryHandler<GetRolesByUserIdAndCompanyIdQuery, GetRolesByUserIdAndCompanyIdQueryResponse>
 {
     private readonly IAuthService _authService;
 
