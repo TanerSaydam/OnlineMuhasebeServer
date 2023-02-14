@@ -55,7 +55,7 @@ public class LogService : ILogService
         {
             foreach (var item in result.Datas)
             {
-                AppUser user = await _userManager.FindByIdAsync(item.UserId);
+                AppUser user = await _userManager.FindByIdAsync(item.UserId);                
                 LogDto logDto = new()
                 {
                     Id = item.Id,
@@ -64,8 +64,8 @@ public class LogService : ILogService
                     TableName = item.TableName,
                     Progress = item.Progress,
                     UserId = item.UserId,
-                    UserEmail = user.Email,
-                    UserName = $"{user.FirstName} {user.LastName}"
+                    UserEmail = user?.Email,
+                    UserName = $"{user?.FirstName} {user?.LastName}"
                 };
                 logDtos.Add(logDto);
             }
