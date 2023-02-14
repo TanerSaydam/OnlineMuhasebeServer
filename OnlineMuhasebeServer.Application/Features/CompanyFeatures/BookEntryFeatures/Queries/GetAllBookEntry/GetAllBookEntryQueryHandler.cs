@@ -7,16 +7,16 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.BookEntryFea
 
 public sealed class GetAllBookEntryQueryHandler : IQueryHandler<GetAllBookEntryQuery, PaginationResult<GetAllBookEntryQueryResponse>>
 {
-    private readonly IBookEntryService _bookEntryService;
+    private readonly IBookEntryService _bookEntryService;    
 
     public GetAllBookEntryQueryHandler(IBookEntryService bookEntryService)
     {
-        _bookEntryService = bookEntryService;
+        _bookEntryService = bookEntryService; 
     }
 
     public async Task<PaginationResult<GetAllBookEntryQueryResponse>> Handle(GetAllBookEntryQuery request, CancellationToken cancellationToken)
     {
-        PaginationResult<BookEntry> result = await _bookEntryService.GetAllAsync(request.CompanyId, request.PageNumber, request.PageSize);
+        PaginationResult<BookEntry> result = await _bookEntryService.GetAllAsync(request.CompanyId, request.PageNumber, request.PageSize, request.Year);
 
         int count = _bookEntryService.GetCount(request.CompanyId);
 

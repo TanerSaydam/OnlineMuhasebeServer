@@ -29,6 +29,7 @@ public class BookEntryService : IBookEntryService
     {
         _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
         _commandRepository.SetDbContextInstance(_context);
+        _unitOfWork.SetDbContextInstance(_context);
 
         await _commandRepository.AddAsync(bookEntry,cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
@@ -56,12 +57,14 @@ public class BookEntryService : IBookEntryService
         return newBookEntryNumber;
     }
 
-    public async Task<PaginationResult<BookEntry>> GetAllAsync(string companyId, int pageNumber, int pageSize)
+    public async Task<PaginationResult<BookEntry>> GetAllAsync(string companyId, int pageNumber, int pageSize, int year)
     {
         _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
         _queryRepository.SetDbContextInstance(_context);
 
-        return await _queryRepository.GetAll(false).OrderByDescending(p => p.Date).ToPagedListAsync(pageNumber,
+        string startingDateString = "01.01." + year;
+        string endDateString = "31.12." + year;
+        return await _queryRepository.GetWhere(p=> p.Date >= Convert.ToDateTime(startingDateString) && p.Date<= Convert.ToDateTime(endDateString)).OrderByDescending(p => p.CreatedDate).ToPagedListAsync(pageNumber,
             pageSize);
     }
 

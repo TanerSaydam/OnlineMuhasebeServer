@@ -2,5 +2,5 @@
 
 public interface IApiService
 {
-    string GetUserIdByToken();
+    string GetUserIdByToken();    
 }

@@ -16,5 +16,5 @@ public sealed class ApiService : IApiService
     {
         var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(p=> p.Type.Contains("authentication"))?.Value;
         return userId ?? string.Empty;
-    }
+    }    
 }
